@@ -1,24 +1,19 @@
-from rest_framework.fields import SerializerMethodField
-from rest_framework.serializers import ModelSerializer
-from rest_framework.exceptions import ValidationError
-from users.models import Payments, User
+
+from rest_framework import serializers
+from .models import User, Payments
 
 
-class UserSerializer(ModelSerializer):
-    payments = SerializerMethodField()
+class PaymentsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Payments
+        fields = ['id', 'user', 'date_of_payment', 'course', 'lesson', 'payment_amount', 'payment_method_is_cash']
 
-    def get_payment_history(self, obj):
-        return PaymentsSerializer(obj.payment_set.all(), many=True).data
+
+class UserSerializer(serializers.ModelSerializer):
+    payments = PaymentsSerializer(many=True, read_only=True)  # Включаем платежи
 
     class Meta:
         model = User
-        fields = "__all__"
+        fields = ['id', 'email', 'phone', 'city', 'avatar', 'payments']
 
-
-
-class PaymentsSerializer(ModelSerializer):
-    payment_history = SerializerMethodField()
-    class Meta:
-        model = Payments
-        fields = "__all__"
 

@@ -1,5 +1,3 @@
-from django.contrib.auth.base_user import BaseUserManager
-from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
@@ -18,9 +16,11 @@ class User(AbstractUser):
     phone = models.CharField(
         max_length=35, verbose_name="телефон", help_text="Укажите телефон", **NULLABLE
     )
+
     city = models.CharField(
-        max_length=50, verbose_name="страна", help_text="Укажите город", **NULLABLE
+        max_length=50, verbose_name="город", help_text="Укажите город", **NULLABLE
     )
+
     avatar = models.ImageField(
         upload_to="users/avatars",
         verbose_name="аватар",
@@ -33,7 +33,7 @@ class User(AbstractUser):
 
 
 class Payments(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="payments")
 
     date_of_payment = models.DateTimeField(
         auto_now_add=False,
@@ -43,16 +43,17 @@ class Payments(models.Model):
     )
 
     course = models.ForeignKey(
-        Course, on_delete=models.CASCADE, **NULLABLE, related_name="course"
-    )
-    lesson = models.ForeignKey(
-        Lesson, on_delete=models.CASCADE, **NULLABLE, related_name="lesson"
+        Course, on_delete=models.CASCADE, **NULLABLE, related_name="payments"
     )
 
-    payment_amount = models.IntegerField(verbose_name="введите сумму оплаты")
+    lesson = models.ForeignKey(
+        Lesson, on_delete=models.CASCADE, **NULLABLE, related_name="payments"
+    )
+
+    payment_amount = models.IntegerField(verbose_name="Введите сумму оплаты")
 
     payment_method_is_cash = models.BooleanField(
-        verbose_name="способ оплаты - наличные",
+        verbose_name="Способ оплаты - наличные",
         help_text="Укажите признак оплаты наличными",
     )
 
@@ -60,5 +61,6 @@ class Payments(models.Model):
         verbose_name = "платеж"
         verbose_name_plural = "платежи"
 
-    def __str__(self):
-        return f"{self.user} ({self.course if self.course else self.lesson} - {self.payment_amount})"
+    def __str__(self):  # Измените на '__str__'
+        # Корректное представление платежа
+        return f"{self.user.email} ({self.course.name if self.course else self.lesson.name if self.lesson else 'Без курса/урока'} - {self.payment_amount})"
