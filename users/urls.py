@@ -20,9 +20,10 @@ urlpatterns = [
         UserRetrieveUpdateAPIView.as_view(),
         name="users_retrieve_update",
     ),
-    # path("users/create/", UserCreateAPIView.as_view(), name="users_create"),
-    # path("users/<int:pk>/delete/", UserDestroyAPIView.as_view(), name="users_delete"),
+    path("users/create/", UserCreateAPIView.as_view(), name="users_create"),
+    path("users/<int:pk>/delete/", UserDestroyAPIView.as_view(), name="users_delete"),
     path("users/", UserListAPIView.as_view(), name="users"),
+
     # payments
     path("payments/", PaymentsListAPIView.as_view(), name="payments"),
     path(
