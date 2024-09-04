@@ -1,0 +1,102 @@
+[
+  {
+    "model": "users.user",
+    "pk": 1,
+    "fields": {
+      "password": "qwerty12",
+      "last_login": null,
+      "is_superuser": false,
+      "first_name": "",
+      "last_name": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2024-09-04T20:51:32.397Z",
+      "email": "adrolv@rambler.ru",
+      "phone": null,
+      "city": null,
+      "avatar": "",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 2,
+    "fields": {
+      "password": "",
+      "last_login": null,
+      "is_superuser": false,
+      "first_name": "",
+      "last_name": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2024-09-04T21:11:55.455Z",
+      "email": "dred@rambler.ru",
+      "phone": null,
+      "city": null,
+      "avatar": "",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.payments",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "date_of_payment": "2023-10-01T10:00:00Z",
+      "course": 7,
+      "lesson": null,
+      "payment_amount": 1500,
+      "payment_method_is_cash": true
+    }
+  },
+  {
+    "model": "users.payments",
+    "pk": 2,
+    "fields": {
+      "user": 1,
+      "date_of_payment": "2023-11-01T10:00:00Z",
+      "course": 7,
+      "lesson": 2,
+      "payment_amount": 1000,
+      "payment_method_is_cash": true
+    }
+  },
+  {
+    "model": "users.payments",
+    "pk": 3,
+    "fields": {
+      "user": 1,
+      "date_of_payment": "2023-01-01T10:00:00Z",
+      "course": 9,
+      "lesson": 1,
+      "payment_amount": 1000,
+      "payment_method_is_cash": true
+    }
+  },
+  {
+    "model": "users.payments",
+    "pk": 4,
+    "fields": {
+      "user": 1,
+      "date_of_payment": "2024-01-01T10:00:00Z",
+      "course": 9,
+      "lesson": 1,
+      "payment_amount": 3000,
+      "payment_method_is_cash": false
+    }
+  },
+  {
+    "model": "users.payments",
+    "pk": 5,
+    "fields": {
+      "user": 2,
+      "date_of_payment": "2023-10-01T10:00:00Z",
+      "course": 7,
+      "lesson": 1,
+      "payment_amount": 3000,
+      "payment_method_is_cash": false
+    }
+  }
+]
