@@ -4,14 +4,18 @@ from rest_framework.generics import (CreateAPIView, DestroyAPIView,
 from rest_framework.viewsets import ModelViewSet
 
 from materials.models import Course, Lesson
-from materials.serializers import CourseSerializer, LessonSerializer
+from materials.serializers import CourseSerializer, LessonSerializer, CourseDetailSerializer
 
 
 class CourseViewSet(ModelViewSet):
     queryset = Course.objects.all()  # выбираем все данные
-    serializer_class = (
-        CourseSerializer  # сериалайзер преобразует данные из БД , которые буду выводить
-    )
+
+
+    def get_serializer_class(self):
+        if self.action == "retrieve":
+            return CourseDetailSerializer
+        return CourseSerializer
+
 
 
 class LessonCreateApiView(CreateAPIView):
