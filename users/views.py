@@ -1,7 +1,13 @@
 from rest_framework import viewsets
+from .models import User, Payments
+from .serializers import UserSerializer, PaymentsSerializer
 from django_filters import rest_framework as filters
-from .models import Payments
-from .serializers import PaymentsSerializer
+
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
 
 class PaymentsFilter(filters.FilterSet):
     date_of_payment = filters.DateTimeFilter(field_name='date_of_payment', lookup_expr='exact')
