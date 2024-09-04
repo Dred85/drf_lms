@@ -10,12 +10,10 @@ from materials.serializers import CourseSerializer, LessonSerializer, CourseDeta
 class CourseViewSet(ModelViewSet):
     queryset = Course.objects.all()  # выбираем все данные
 
-
     def get_serializer_class(self):
         if self.action == "retrieve":
             return CourseDetailSerializer
         return CourseSerializer
-
 
 
 class LessonCreateApiView(CreateAPIView):

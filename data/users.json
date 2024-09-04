@@ -1,0 +1,186 @@
+[
+  {
+    "model": "users.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$720000$1w0izOMyWpOylxSt0LhqVv$eFxxTE3rnFY4FI3K1mYoQl0PX8Sd/hcK4MRRtenq/6E=",
+      "last_login": null,
+      "is_superuser": true,
+      "first_name": "",
+      "last_name": "",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2024-07-10T08:16:41.046Z",
+      "email": "sky@pro.com",
+      "phone": "89998887766",
+      "city": "default city",
+      "avatar": "",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 2,
+    "fields": {
+      "password": "frog",
+      "last_login": null,
+      "is_superuser": false,
+      "first_name": "",
+      "last_name": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2024-07-10T08:26:10.868Z",
+      "email": "user@sky.pro",
+      "phone": "89998887766",
+      "city": "default city",
+      "avatar": "",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.payments",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "date_of_payment": "2024-04-24T00:00:00Z",
+      "course": 1,
+      "lesson": null,
+      "payment_amount": 12000,
+      "payment_method_is_cash": true
+    }
+  },
+  {
+    "model": "users.payments",
+    "pk": 2,
+    "fields": {
+      "user": 1,
+      "date_of_payment": "2024-05-24T00:00:00Z",
+      "course": null,
+      "lesson": 2,
+      "payment_amount": 12000,
+      "payment_method_is_cash": true
+    }
+  },
+  {
+    "model": "users.payments",
+    "pk": 3,
+    "fields": {
+      "user": 1,
+      "date_of_payment": "2023-05-24T00:00:00Z",
+      "course": null,
+      "lesson": 8,
+      "payment_amount": 4000,
+      "payment_method_is_cash": true
+    }
+  },
+  {
+    "model": "users.payments",
+    "pk": 4,
+    "fields": {
+      "user": 1,
+      "date_of_payment": "2024-07-11T00:00:00Z",
+      "course": 3,
+      "lesson": null,
+      "payment_amount": 22000,
+      "payment_method_is_cash": true
+    }
+  },
+  {
+    "model": "users.payments",
+    "pk": 5,
+    "fields": {
+      "user": 1,
+      "date_of_payment": "2024-02-11T00:00:00Z",
+      "course": 2,
+      "lesson": null,
+      "payment_amount": 11000,
+      "payment_method_is_cash": false
+    }
+  },
+  {
+    "model": "users.payments",
+    "pk": 6,
+    "fields": {
+      "user": 1,
+      "date_of_payment": "2023-12-11T00:00:00Z",
+      "course": null,
+      "lesson": 7,
+      "payment_amount": 7000,
+      "payment_method_is_cash": false
+    }
+  },
+  {
+    "model": "users.payments",
+    "pk": 7,
+    "fields": {
+      "user": 1,
+      "date_of_payment": "2024-01-17T00:00:00Z",
+      "course": null,
+      "lesson": 5,
+      "payment_amount": 6000,
+      "payment_method_is_cash": false
+    }
+  },
+  {
+    "model": "users.payments",
+    "pk": 8,
+    "fields": {
+      "user": 1,
+      "date_of_payment": "2024-01-19T00:00:00Z",
+      "course": 2,
+      "lesson": null,
+      "payment_amount": 9000,
+      "payment_method_is_cash": false
+    }
+  },
+  {
+    "model": "users.payments",
+    "pk": 9,
+    "fields": {
+      "user": 2,
+      "date_of_payment": "2024-02-19T00:00:00Z",
+      "course": 2,
+      "lesson": null,
+      "payment_amount": 9000,
+      "payment_method_is_cash": false
+    }
+  },
+  {
+    "model": "users.payments",
+    "pk": 10,
+    "fields": {
+      "user": 2,
+      "date_of_payment": "2024-04-19T00:00:00Z",
+      "course": null,
+      "lesson": 4,
+      "payment_amount": 9000,
+      "payment_method_is_cash": true
+    }
+  },
+  {
+    "model": "users.payments",
+    "pk": 11,
+    "fields": {
+      "user": 1,
+      "date_of_payment": "2024-03-21T00:00:00Z",
+      "course": null,
+      "lesson": 3,
+      "payment_amount": 3000,
+      "payment_method_is_cash": false
+    }
+  },
+  {
+    "model": "users.payments",
+    "pk": 12,
+    "fields": {
+      "user": 1,
+      "date_of_payment": "2024-04-01T00:00:00Z",
+      "course": null,
+      "lesson": 3,
+      "payment_amount": 3000,
+      "payment_method_is_cash": false
+    }
+  }
+]
