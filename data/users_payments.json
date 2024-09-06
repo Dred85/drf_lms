@@ -98,5 +98,41 @@
       "payment_amount": 3000,
       "payment_method_is_cash": false
     }
+  },
+  {
+    "model": "users.payments",
+    "pk": 6,
+    "fields": {
+      "user": 1,
+      "date_of_payment": "2021-10-01T10:00:00Z",
+      "course": 7,
+      "lesson": 1,
+      "payment_amount": 3000,
+      "payment_method_is_cash": false
+    }
+  },
+  {
+    "model": "users.payments",
+    "pk": 7,
+    "fields": {
+      "user": 1,
+      "date_of_payment": "2020-10-01T10:00:00Z",
+      "course": 7,
+      "lesson": 1,
+      "payment_amount": 1000,
+      "payment_method_is_cash": true
+    }
+  },
+  {
+    "model": "users.payments",
+    "pk": 8,
+    "fields": {
+      "user": 1,
+      "date_of_payment": "2024-10-01T10:00:00Z",
+      "course": 7,
+      "lesson": 1,
+      "payment_amount": 500,
+      "payment_method_is_cash": true
+    }
   }
 ]

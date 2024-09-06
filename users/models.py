@@ -25,7 +25,7 @@ class User(AbstractUser):
         upload_to="users/avatars",
         verbose_name="аватар",
         help_text="Загрузите аватар",
-        **NULLABLE
+        **NULLABLE,
     )
 
     USERNAME_FIELD = "email"

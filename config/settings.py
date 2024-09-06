@@ -1,7 +1,6 @@
 import os
 from pathlib import Path
 
-from django.conf.global_settings import MEDIA_URL
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -24,7 +23,6 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-
     "rest_framework",
     "users",
     "materials",
@@ -62,10 +60,7 @@ TEMPLATES = [
 WSGI_APPLICATION = "config.wsgi.application"
 
 REST_FRAMEWORK = {
-    'DEFAULT_FILTER_BACKENDS': (
-        'django_filters.rest_framework.DjangoFilterBackend',
-
-    ),
+    "DEFAULT_FILTER_BACKENDS": ("django_filters.rest_framework.DjangoFilterBackend",),
 }
 
 DATABASES = {
@@ -94,9 +89,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# Internationalization
-# https://docs.djangoproject.com/en/5.1/topics/i18n/
-
 LANGUAGE_CODE = "en-us"
 
 TIME_ZONE = "UTC"
@@ -104,9 +96,6 @@ TIME_ZONE = "UTC"
 USE_I18N = True
 
 USE_TZ = True
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = "static/"
 
