@@ -1,7 +1,7 @@
 from django.db import models
 
-
 NULLABLE = {"blank": True, "null": True}
+
 
 class Course(models.Model):
     name = models.CharField(
@@ -49,6 +49,7 @@ class Lesson(models.Model):
         verbose_name="Курс",
         help_text="Выберите курс",
         on_delete=models.CASCADE,
+        related_name="lessons",
         **NULLABLE
     )
 
