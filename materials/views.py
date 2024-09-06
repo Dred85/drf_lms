@@ -9,9 +9,9 @@ from rest_framework.viewsets import ModelViewSet
 
 from materials.models import Course, Lesson
 from materials.serializers import (
+    CourseDetailSerializer,
     CourseSerializer,
     LessonSerializer,
-    CourseDetailSerializer,
 )
 
 

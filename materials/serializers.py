@@ -11,10 +11,14 @@ class LessonSerializer(ModelSerializer):
 
 
 class CourseSerializer(ModelSerializer):
-    lessons = LessonSerializer(many=True, read_only=True)  # Отобразить список уроков в курсе
+    lessons = LessonSerializer(
+        many=True, read_only=True
+    )  # Отобразить список уроков в курсе
+
     class Meta:
         model = Course
-        fields = ['name', 'preview_image', 'description', 'lessons']
+        fields = ["name", "preview_image", "description", "lessons"]
+
 
 class CourseDetailSerializer(ModelSerializer):
     lesson_count = SerializerMethodField()
@@ -22,7 +26,8 @@ class CourseDetailSerializer(ModelSerializer):
 
     class Meta:
         model = Course
-        fields = ['name', 'preview_image', 'description', 'lesson_count', 'lessons']
+        fields = ["name", "preview_image", "description", "lesson_count", "lessons"]
 
-    def get_lesson_count(self, course):
+    @staticmethod
+    def get_lesson_count(course):
         return course.lessons.count()
