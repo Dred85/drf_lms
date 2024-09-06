@@ -1,7 +1,7 @@
 from django.db import models
 
-
 NULLABLE = {"blank": True, "null": True}
+
 
 class Course(models.Model):
     name = models.CharField(
@@ -12,7 +12,7 @@ class Course(models.Model):
     preview_image = models.ImageField(
         upload_to="materials_previews/",
         help_text="Загрузите превью (картинку) курса",
-        **NULLABLE
+        **NULLABLE,
     )
     description = models.TextField(
         verbose_name="Описание курса", help_text="Сделайте описание курса", **NULLABLE
@@ -35,13 +35,13 @@ class Lesson(models.Model):
     preview_image = models.ImageField(
         upload_to="lessons/photo",
         help_text="Загрузите превью (картинку) урока",
-        **NULLABLE
+        **NULLABLE,
     )
     link_to_video = models.URLField(
         verbose_name="Ссылка на видео",
         max_length=200,
         help_text="Загрузите видео урока",
-        **NULLABLE
+        **NULLABLE,
     )
 
     course = models.ForeignKey(
@@ -49,7 +49,8 @@ class Lesson(models.Model):
         verbose_name="Курс",
         help_text="Выберите курс",
         on_delete=models.CASCADE,
-        **NULLABLE
+        related_name="lessons",
+        **NULLABLE,
     )
 
     class Meta:
