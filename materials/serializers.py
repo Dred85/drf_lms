@@ -17,7 +17,7 @@ class CourseSerializer(ModelSerializer):
 
     class Meta:
         model = Course
-        fields = ["name", "preview_image", "description", "lessons"]
+        fields = ["id", "name", "preview_image", "description", "lessons"]
 
 
 class CourseDetailSerializer(ModelSerializer):
@@ -26,7 +26,7 @@ class CourseDetailSerializer(ModelSerializer):
 
     class Meta:
         model = Course
-        fields = ["name", "preview_image", "description", "lesson_count", "lessons"]
+        fields = ["id", "name", "preview_image", "description", "lesson_count", "lessons"]
 
     @staticmethod
     def get_lesson_count(course):
