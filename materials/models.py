@@ -18,6 +18,14 @@ class Course(models.Model):
         verbose_name="Описание курса", help_text="Сделайте описание курса", **NULLABLE
     )
 
+    owner = models.ForeignKey(
+        "users.User",
+        on_delete=models.SET_NULL,
+        **NULLABLE,
+        verbose_name="Владелец курса",
+        help_text="Укажите владельца курса",
+    )
+
     class Meta:
         verbose_name = "Курс"
         verbose_name_plural = "Курсы"
@@ -51,6 +59,14 @@ class Lesson(models.Model):
         on_delete=models.CASCADE,
         related_name="lessons",
         **NULLABLE,
+    )
+
+    owner = models.ForeignKey(
+        "users.User",
+        on_delete=models.SET_NULL,
+        **NULLABLE,
+        verbose_name="Владелец урока",
+        help_text="Укажите владельца урока",
     )
 
     class Meta:
