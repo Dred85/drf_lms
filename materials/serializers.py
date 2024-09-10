@@ -33,7 +33,7 @@ class CourseDetailSerializer(ModelSerializer):
             "description",
             "lesson_count",
             "lessons",
-            "owner"
+            "owner",
         ]
 
     @staticmethod

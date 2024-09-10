@@ -11,7 +11,7 @@ class IsModer(permissions.BasePermission):
         return request.user.groups.filter(name="moders").exists()
 
 
-class IsOwnerOrReadOnly(permissions.BasePermission):
+class IsOwner(permissions.BasePermission):
     """
     Разрешение на уровне объекта, позволяющее редактировать его только владельцам объекта
     """
@@ -19,7 +19,6 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
     def has_object_permission(self, request, view, obj):
         # Разрешения на чтение разрешены для любого запроса,
         # поэтому мы всегда разрешаем запросы GET, HEAD или OPTIONS.
-        if request.method in permissions.SAFE_METHODS:
+        if obj.owner == request.user:
             return True
-
-        return obj.owner == request.user
+        return False
