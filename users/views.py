@@ -27,10 +27,13 @@ class PaymentsViewSet(viewsets.ModelViewSet):
     # Поле по умолчанию для сортировки
     ordering = ("date_of_payment",)
 
+
 class UserCreateAPIView(CreateAPIView):
     serializer_class = UserSerializer
     queryset = User.objects.all()
-    permission_classes = (AllowAny,) # Даем доступ для всех не авторизованных пользователей
+    permission_classes = (
+        AllowAny,
+    )  # Даем доступ для всех не авторизованных пользователей
 
     def perform_create(self, serializer):
         user = serializer.save(is_active=True)
