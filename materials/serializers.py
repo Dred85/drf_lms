@@ -25,10 +25,15 @@ class CourseSerializer(ModelSerializer):
     lessons = LessonSerializer(
         many=True, read_only=True
     )  # Отобразить список уроков в курсе
+    is_subscribed = SerializerMethodField()
 
     class Meta:
         model = Course
-        fields = ["id", "name", "preview_image", "description", "lessons", "owner"]
+        fields = ["id", "name", "preview_image", "description", "lessons", "owner", "is_subscribed"]
+
+    def get_is_subscribed(self, course):
+        user = self.context['request'].user
+        return Subscription.objects.filter(user=user, course=course).exists()
 
 
 class CourseDetailSerializer(ModelSerializer):
