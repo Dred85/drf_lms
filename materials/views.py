@@ -79,7 +79,10 @@ class LessonUpdateAPIView(UpdateAPIView):
 class LessonDestroyAPIView(DestroyAPIView):
     queryset = Lesson.objects.all()
     serializer_class = LessonSerializer
-    permission_classes = [IsAuthenticated, ~IsModer | IsOwner] # удалять может только авторизованный владелец
+    permission_classes = [
+        IsAuthenticated,
+        ~IsModer | IsOwner,
+    ]  # удалять может только авторизованный владелец
 
 
 class SubscriptionAPIView(APIView):
@@ -87,7 +90,7 @@ class SubscriptionAPIView(APIView):
 
     def post(self, *args, **kwargs):
         user = self.request.user
-        course_id = self.request.data.get('course')
+        course_id = self.request.data.get("course")
 
         # Отладка: проверьте, что course_id передается правильно
         print(f"Course ID from request: {course_id}")
@@ -97,9 +100,9 @@ class SubscriptionAPIView(APIView):
         subs_item = Subscription.objects.filter(user=user, course=course_item)
         if subs_item.exists():
             subs_item.delete()
-            message = 'подписка удалена'
+            message = "подписка удалена"
         else:
             Subscription.objects.create(user=user, course=course_item)
-            message = 'Подписка включена'
+            message = "Подписка включена"
 
-        return Response({'message': message})
+        return Response({"message": message})
