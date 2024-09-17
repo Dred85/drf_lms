@@ -7,6 +7,7 @@ from users.models import User
 
 
 class LessonTestCase(APITestCase):
+    """Тесты уроков"""
 
     def setUp(self) -> None:
         self.user = User.objects.create(email="test@test.ru")
@@ -14,7 +15,8 @@ class LessonTestCase(APITestCase):
         self.lesson = Lesson.objects.create(
             name="test", description="test", course=self.course, owner=self.user
         )
-        self.client.force_authenticate(user=self.user)
+        self.client.force_authenticate(
+            user=self.user)  # "принудительно" указать клиенту, что определенный пользователь аутентифицирован для всех запросов
 
     def test_retrieve_lesson(self):
         """Тестирование вывода одного урока"""
@@ -23,6 +25,27 @@ class LessonTestCase(APITestCase):
         data = response.json()
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(data.get("name"), self.lesson.name)
+
+    def test_create_lesson_invalid_url(self):
+        """Тестирование валидации создания урока с недействительной ссылкой и проверка сообщения об ошибке"""
+        url = reverse("materials:lessons_create")
+        data = {
+            "name": "new test valid",
+            "description": "new test valid",
+            "link_to_video": "https://myvideo.com/lesson",  # Не YouTube ссылка
+        }
+
+        response = self.client.post(url, data=data)
+
+        # Ожидаем статус ошибки валидации (400 Bad Request)
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+        # Проверяем, что урок не был создан
+        # self.assertEqual(Lesson.objects.count(), 0)
+
+        # Проверяем, что в ответе содержится конкретное сообщение об ошибке
+        self.assertIn("Запрещается использовать ссылки на сторонние ресурсы, кроме youtube.com",
+                      response.data['link_to_video'])
 
     def test_create_lesson(self):
         """Тестирование создания урока"""
@@ -106,3 +129,39 @@ class SubscriptionTestCase(APITestCase):
         response_2 = self.client.post(url, data_2)
         self.assertEqual(response_2.status_code, status.HTTP_200_OK)
         self.assertEqual(1, Subscription.objects.all().count())
+
+
+class CourseTestCase(APITestCase):
+    """Тестирование курсов"""
+
+    def setUp(self) -> None:
+        self.user = User.objects.create(email="test@test.ru")
+        self.course = Course.objects.create(name="test", description="test", owner=self.user)
+        self.client.force_authenticate(user=self.user)
+
+    def test_create_course(self):
+        """Тестирование создания курса"""
+        url = reverse("materials:course-list")
+        data = {
+            "name": "new_course",
+            "description": "new_course",
+        }
+        response = self.client.post(url, data=data)
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(2, Course.objects.all().count())
+
+    def test_update_course(self):
+        """Тестирование редактирования курса"""
+        url = reverse("materials:course-detail", args=[self.course.pk])
+        data = {"name": "update test"}
+        response = self.client.patch(url, data=data)
+        data = response.json()
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(data.get("name"), "update test")
+
+    def test_destroy_lesson(self):
+        """Тестирование удаления курса"""
+        url = reverse("materials:course-detail", args=[self.course.pk])
+        response = self.client.delete(url)
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+        self.assertEqual(0, Lesson.objects.all().count())
