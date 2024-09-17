@@ -86,6 +86,7 @@ class LessonTestCase(APITestCase):
 
 
 class SubscriptionTestCase(APITestCase):
+    """ Тестирование создания и удаления подписок на курсы """
     def setUp(self) -> None:
         self.user = User.objects.create(email='test@test.ru')
 
