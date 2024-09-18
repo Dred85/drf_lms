@@ -31,7 +31,7 @@ class PaymentsViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         payment = serializer.save(user=self.request.user)
         product_id = create_stripe_product(payment)
-        price = create_stripe_price(payment.amount, product_id)
+        price = create_stripe_price(payment.payment_amount, product_id)
         session_id, payment_link = create_stripe_sessions(price)
         payment.session_id = session_id
         payment.link_to_payment = payment_link

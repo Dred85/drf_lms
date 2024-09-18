@@ -11,11 +11,11 @@ def create_stripe_product(prod):
     stripe_product = stripe.Product.create(name=product)
     return stripe_product.get('id')
 
-def convert_rub_to_dollars(amount):
-    """Конвертирует рубли в доллары"""
-    c = CurrencyRates()
-    rate = c.get_rate('RUB', 'USD')
-    return int(amount * rate)
+# def convert_rub_to_dollars(amount):
+#     """Конвертирует рубли в доллары"""
+#     c = CurrencyRates()
+#     rate = c.get_rate('RUB', 'USD')
+#     return int(amount * rate)
 
 def create_stripe_price(amount, product_id):
     """Создает цену в страйпе"""
