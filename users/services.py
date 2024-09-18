@@ -1,10 +1,8 @@
-import json
-from datetime import datetime, timedelta
-
 import stripe
+from forex_python.converter import CurrencyRates
+from config.settings import STRIPE_API_KEY
 
-
-stripe.api_key = "sk_test_51PwQ0DGtRQgxkxdjaPE1m9OP8k7C4ZFH5TuxxNFLYlXj42vlaQO3NxdxFWgs45EnukxLqGerHJNYBMp01NqiM4st006zReoYs3"
+stripe.api_key = STRIPE_API_KEY
 
 
 def create_stripe_product(prod):
@@ -13,6 +11,11 @@ def create_stripe_product(prod):
     stripe_product = stripe.Product.create(name=product)
     return stripe_product.get('id')
 
+def convert_rub_to_dollars(amount):
+    """Конвертирует рубли в доллары"""
+    c = CurrencyRates()
+    rate = c.get_rate('RUB', 'USD')
+    return int(amount * rate)
 
 def create_stripe_price(amount, product_id):
     """Создает цену в страйпе"""

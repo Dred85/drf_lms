@@ -125,3 +125,5 @@ SIMPLE_JWT = {
 AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
 ]
+
+STRIPE_API_KEY = os.getenv("STRIPE_API_KEY")
