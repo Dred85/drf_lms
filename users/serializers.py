@@ -6,15 +6,7 @@ from .models import Payments, User
 class PaymentsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Payments
-        fields = [
-            "id",
-            "user",
-            "date_of_payment",
-            "course",
-            "lesson",
-            "payment_amount",
-            "payment_method_is_cash",
-        ]
+        fields = "__all__"
 
 
 class UserSerializer(serializers.ModelSerializer):
