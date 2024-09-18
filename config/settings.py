@@ -24,7 +24,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+
     "rest_framework",
+    "drf_yasg",
+
     "users",
     "materials",
     "django_filters",
@@ -122,3 +125,5 @@ SIMPLE_JWT = {
 AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
 ]
+
+STRIPE_API_KEY = os.getenv("STRIPE_API_KEY")
