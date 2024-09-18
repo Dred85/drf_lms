@@ -16,7 +16,8 @@ class LessonTestCase(APITestCase):
             name="test", description="test", course=self.course, owner=self.user
         )
         self.client.force_authenticate(
-            user=self.user)  # "принудительно" указать клиенту, что определенный пользователь аутентифицирован для всех запросов
+            user=self.user
+        )  # "принудительно" указать клиенту, что определенный пользователь аутентифицирован для всех запросов
 
     def test_retrieve_lesson(self):
         """Тестирование вывода одного урока"""
@@ -44,8 +45,10 @@ class LessonTestCase(APITestCase):
         # self.assertEqual(Lesson.objects.count(), 0)
 
         # Проверяем, что в ответе содержится конкретное сообщение об ошибке
-        self.assertIn("Запрещается использовать ссылки на сторонние ресурсы, кроме youtube.com",
-                      response.data['link_to_video'])
+        self.assertIn(
+            "Запрещается использовать ссылки на сторонние ресурсы, кроме youtube.com",
+            response.data["link_to_video"],
+        )
 
     def test_create_lesson(self):
         """Тестирование создания урока"""
@@ -136,7 +139,9 @@ class CourseTestCase(APITestCase):
 
     def setUp(self) -> None:
         self.user = User.objects.create(email="test@test.ru")
-        self.course = Course.objects.create(name="test", description="test", owner=self.user)
+        self.course = Course.objects.create(
+            name="test", description="test", owner=self.user
+        )
         self.client.force_authenticate(user=self.user)
 
     def test_create_course(self):
