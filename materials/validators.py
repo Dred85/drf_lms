@@ -1,8 +1,5 @@
-import re
-
 from rest_framework.exceptions import ValidationError
 
-# YOUTUBE_REGEX = r'(https?://)?(www\.)?(youtube|youtu|youtube-nocookie)\.(com|be)/.+$'
 YOUTUBE_REGEX = "youtube.com"
 
 
