@@ -13,6 +13,7 @@ class Course(models.Model):
     )
     preview_image = models.ImageField(
         upload_to="materials_previews/",
+        verbose_name="Изображение для предварительного просмотра",
         help_text="Загрузите превью (картинку) курса",
         **NULLABLE,
     )

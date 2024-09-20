@@ -60,19 +60,16 @@ class Payments(models.Model):
         verbose_name="Способ оплаты - наличные",
         help_text="Укажите признак оплаты наличными",
     )
-    session_id = models.CharField(max_length=255,
-                                  verbose_name='ID сессии',
-                                  **NULLABLE)
-    link_to_payment = models.URLField(max_length=400,
-                                      verbose_name='ссылка на оплату',
-                                      **NULLABLE)
+    session_id = models.CharField(max_length=255, verbose_name="ID сессии", **NULLABLE)
+    link_to_payment = models.URLField(
+        max_length=400, verbose_name="ссылка на оплату", **NULLABLE
+    )
 
     class Meta:
         verbose_name = "платеж"
         verbose_name_plural = "платежи"
-        ordering = ('-date_of_payment',)
+        ordering = ("-date_of_payment",)
 
     def __str__(self):  # Измените на '__str__'
         # Корректное представление платежа
         return f"{self.user.email} ({self.course.name if self.course else self.lesson.name if self.lesson else 'Без курса/урока'} - {self.payment_amount})"
-

@@ -17,7 +17,6 @@ from materials.serializers import (
     CourseDetailSerializer,
     CourseSerializer,
     LessonSerializer,
-    SubscriptionSerializer,
 )
 from users.permissions import IsModer, IsOwner
 
