@@ -14,9 +14,8 @@ def subscription_message(course, email):
         subject="Сообщение о подписке",
         message=f"Вы подписаны на обновление курса: {course}",
         from_email=settings.EMAIL_HOST_USER,
-        recipient_list=[email]
+        recipient_list=[email] # кому отправляем
     )
-
 
 
 @shared_task

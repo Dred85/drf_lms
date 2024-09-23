@@ -55,7 +55,7 @@ class CourseViewSet(ModelViewSet):
         update_course = serializer.save()
         subscriptions = Subscription.objects.filter(course=update_course)
         for subscription in subscriptions:
-            subscription_message.delay(update_course.title, subscription.user.email)
+            subscription_message.delay(update_course.name, subscription.user.email)
         update_course.save()
 
 
