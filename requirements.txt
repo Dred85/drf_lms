@@ -17,6 +17,9 @@ sqlparse==0.5.1
 forex-python==1.8
 drf-yasg==1.21.7
 stripe==10.11.0
+celery==5.4.0
+redis==5.0.8
+
 
 
 
