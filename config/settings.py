@@ -27,6 +27,7 @@ INSTALLED_APPS = [
 
     "rest_framework",
     "drf_yasg",
+    'django_celery_beat',
 
     "users",
     "materials",
@@ -128,16 +129,12 @@ AUTHENTICATION_BACKENDS = [
 
 STRIPE_API_KEY = os.getenv("STRIPE_API_KEY")
 
-# URL-адрес брокера сообщений
-CELERY_BROKER_URL = 'redis://localhost:6379/0'
-
-# URL-адрес брокера результатов, также Redis
-CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+CELERY_BROKER_URL = os.getenv('CELERY_BROKER_URL')
+CELERY_RESULT_BACKEND = os.getenv('CELERY_RESULT_BACKEND')
 
 CELERY_TIMEZONE = TIME_ZONE
 CELERY_TASK_TRACK_STARTED = True
 CELERY_TASK_TIME_LIMIT = 30 * 60
-
 
 EMAIL_HOST = "smtp.yandex.ru"
 EMAIL_PORT = 465
@@ -149,4 +146,9 @@ EMAIL_USE_SSL = True
 SERVER_EMAIL = EMAIL_HOST_USER
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
-
+CELERY_BEAT_SCHEDULE = {
+    'block_user': {
+        'task': 'materials.tasks.block_user',
+        'schedule': timedelta(seconds=10),
+    },
+}
