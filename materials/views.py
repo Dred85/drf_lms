@@ -108,8 +108,6 @@ class SubscriptionAPIView(APIView):
         user = self.request.user
         course_id = self.request.data.get("course")
 
-
-
         course_item = get_object_or_404(Course, pk=course_id)
 
         subs_item = Subscription.objects.filter(user=user, course=course_item)
@@ -119,6 +117,5 @@ class SubscriptionAPIView(APIView):
         else:
             Subscription.objects.create(user=user, course=course_item)
             message = "Подписка включена"
-
 
         return Response({"message": message})
