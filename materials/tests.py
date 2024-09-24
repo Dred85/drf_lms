@@ -29,6 +29,7 @@ class LessonTestCase(APITestCase):
 
     def test_create_lesson_invalid_url(self):
         """Тестирование валидации создания урока с недействительной ссылкой и проверка сообщения об ошибке"""
+
         url = reverse("materials:lessons_create")
         data = {
             "name": "new test valid",
@@ -42,7 +43,7 @@ class LessonTestCase(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
         # Проверяем, что урок не был создан
-        # self.assertEqual(Lesson.objects.count(), 0)
+        self.assertEqual(Lesson.objects.count(), 1)
 
         # Проверяем, что в ответе содержится конкретное сообщение об ошибке
         self.assertIn(

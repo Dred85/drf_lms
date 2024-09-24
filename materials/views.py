@@ -19,6 +19,7 @@ from materials.serializers import (
     LessonSerializer,
 )
 from users.permissions import IsModer, IsOwner
+from materials.tasks import subscription_message
 
 
 class CourseViewSet(ModelViewSet):
@@ -49,6 +50,13 @@ class CourseViewSet(ModelViewSet):
         course = serializer.save()
         course.owner = self.request.user
         course.save()
+
+    def perform_update(self, serializer):
+        update_course = serializer.save()
+        subscriptions = Subscription.objects.filter(course=update_course)
+        for subscription in subscriptions:
+            subscription_message.delay(update_course.name, subscription.user.email)
+        update_course.save()
 
 
 class LessonCreateApiView(CreateAPIView):
@@ -99,9 +107,6 @@ class SubscriptionAPIView(APIView):
     def post(self, *args, **kwargs):
         user = self.request.user
         course_id = self.request.data.get("course")
-
-        # Отладка: проверьте, что course_id передается правильно
-        print(f"Course ID from request: {course_id}")
 
         course_item = get_object_or_404(Course, pk=course_id)
 
