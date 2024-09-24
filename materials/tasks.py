@@ -21,6 +21,7 @@ def subscription_message(course, email):
 @shared_task
 def block_user():
     now = timezone.now()
+    # print(f"Время сейчас:{now} # для проверки работы celery-beat
     users = User.objects.filter(
         last_login__lte=now - timedelta(days=30), is_active=True
     )
