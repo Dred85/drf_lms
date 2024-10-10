@@ -13,7 +13,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
@@ -77,7 +77,7 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": os.getenv("DATABASES_NAME"),
-        "USER": os.getenv("DATABASES_USER"),
+        "USER": os.getenv("POSTGRES_USER"),
         "PASSWORD": os.getenv("DATABASES_PASSWORD"),
         "HOST": os.getenv("DATABASES_HOST"),
         "PORT": os.getenv("DATABASES_PORT"),
